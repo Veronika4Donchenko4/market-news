@@ -1,0 +1,39 @@
+.mainRoot {
+    padding: 80px 8px 8px;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    aling-items:center;
+}
+
+.article-item {
+    display:flex;
+    flex-direction: column;
+    background-color: #4f4a4e;
+    color: #fff;
+    width: 420px;
+    height: 500px;
+    margin: 1rem;
+    transition: all 0.4s;
+}
+
+.article-item:hover {
+    box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.4);
+}
+
+.article-item img {
+    height: 300px;
+    width: 100%;
+}
+
+.article-item a {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 0.5rem;
+    text-align: center;
+    vertical-align: middle;
+}
