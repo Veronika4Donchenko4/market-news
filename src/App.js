@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Main from "./components/Main/Main";
+import Post from "./components/Post/Post";
+import { useContext, useEffect } from "react";
+import {PostsContext} from './context/post-context';
 import './App.css';
 
-function App() {
+const App = () => {
+  const { addPostsFromApi } = useContext(PostsContext);
+
+
+  useEffect(() => {
+    fetch('http://localhost:3001/posts')
+      .then(response => response.json())
+      .then(posts => addPostsFromApi(posts))
+  }, [addPostsFromApi]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   <div className="app"> 
+    <Routes>
+      <Route path="/" element={<Header/>}>
+        <Route index element={<Main />}/>
+        <Route path="/post/:id" element={<Post />}/>
+          </Route>
+    </Routes>
+   </div>
+  )
 }
 
 export default App;
