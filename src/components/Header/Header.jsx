@@ -7,7 +7,7 @@ const Header = () => {
         <div className="logo">
             <Link className="navbar" to= '/'>
                 <span >
-                    SHARETRADE.
+                    Market.
                 </span>
                 <span>com</span>
             </Link>

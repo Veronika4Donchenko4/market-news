@@ -11,9 +11,26 @@ const App = () => {
 
 
   useEffect(() => {
-    fetch('http://localhost:3001/posts')
-      .then(response => response.json())
-      .then(posts => addPostsFromApi(posts))
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/posts');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("Invalid content type, expecting JSON");
+        }
+
+        const posts = await response.json();
+        addPostsFromApi(posts);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+    fetchData();
   }, [addPostsFromApi]);
 
   return (
